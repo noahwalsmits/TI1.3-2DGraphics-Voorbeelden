@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/HelloClass/HelloClass.iml" filepath="$PROJECT_DIR$/HelloClass/HelloClass.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HelloColors/HelloColors.iml" filepath="$PROJECT_DIR$/HelloColors/HelloColors.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HelloGraph/HelloGraph.iml" filepath="$PROJECT_DIR$/HelloGraph/HelloGraph.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HelloGraph2/HelloGraph2.iml" filepath="$PROJECT_DIR$/HelloGraph2/HelloGraph2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HelloJava2D/HelloJava2D.iml" filepath="$PROJECT_DIR$/HelloJava2D/HelloJava2D.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HelloLine/HelloLine.iml" filepath="$PROJECT_DIR$/HelloLine/HelloLine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HelloRainbow/HelloRainbow.iml" filepath="$PROJECT_DIR$/HelloRainbow/HelloRainbow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HelloTransforms/HelloTransforms.iml" filepath="$PROJECT_DIR$/HelloTransforms/HelloTransforms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java2D_week1.iml" filepath="$PROJECT_DIR$/Java2D_week1.iml" />
+    </modules>
+  </component>
+</project>

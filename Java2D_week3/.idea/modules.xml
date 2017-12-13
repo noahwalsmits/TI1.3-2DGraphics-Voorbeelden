@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Java2D_week3.iml" filepath="$PROJECT_DIR$/Java2D_week3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk3_Fonts/wk3_Fonts.iml" filepath="$PROJECT_DIR$/wk3_Fonts/wk3_Fonts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk3_animation1/wk3_animation1.iml" filepath="$PROJECT_DIR$/wk3_animation1/wk3_animation1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk3_animation_ball/wk3_animation_ball.iml" filepath="$PROJECT_DIR$/wk3_animation_ball/wk3_animation_ball.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk3_animation_spritesheet/wk3_animation_spritesheet.iml" filepath="$PROJECT_DIR$/wk3_animation_spritesheet/wk3_animation_spritesheet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk3_animation_timing/wk3_animation_timing.iml" filepath="$PROJECT_DIR$/wk3_animation_timing/wk3_animation_timing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk3_camera/wk3_camera.iml" filepath="$PROJECT_DIR$/wk3_camera/wk3_camera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk3_clip/wk3_clip.iml" filepath="$PROJECT_DIR$/wk3_clip/wk3_clip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk3_composite/wk3_composite.iml" filepath="$PROJECT_DIR$/wk3_composite/wk3_composite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk3_images/wk3_images.iml" filepath="$PROJECT_DIR$/wk3_images/wk3_images.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk3_tilemap/wk3_tilemap.iml" filepath="$PROJECT_DIR$/wk3_tilemap/wk3_tilemap.iml" />
+    </modules>
+  </component>
+</project>

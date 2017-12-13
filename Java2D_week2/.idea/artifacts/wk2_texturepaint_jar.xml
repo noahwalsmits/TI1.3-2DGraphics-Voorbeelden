@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="wk2_texturepaint:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/wk2_texturepaint_jar</output-path>
+    <root id="archive" name="wk2_texturepaint.jar">
+      <element id="module-output" name="wk2_texturepaint" />
+    </root>
+  </artifact>
+</component>

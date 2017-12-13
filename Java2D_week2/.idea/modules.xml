@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Java2D_week2.iml" filepath="$PROJECT_DIR$/Java2D_week2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk2_GeneralPath/wk2_GeneralPath.iml" filepath="$PROJECT_DIR$/wk2_GeneralPath/wk2_GeneralPath.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk2_Transforms/wk2_Transforms.iml" filepath="$PROJECT_DIR$/wk2_Transforms/wk2_Transforms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk2_areas/wk2_areas.iml" filepath="$PROJECT_DIR$/wk2_areas/wk2_areas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk2_caps_joins/wk2_caps_joins.iml" filepath="$PROJECT_DIR$/wk2_caps_joins/wk2_caps_joins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk2_mouse/wk2_mouse.iml" filepath="$PROJECT_DIR$/wk2_mouse/wk2_mouse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk2_radial/wk2_radial.iml" filepath="$PROJECT_DIR$/wk2_radial/wk2_radial.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wk2_texturepaint/wk2_texturepaint.iml" filepath="$PROJECT_DIR$/wk2_texturepaint/wk2_texturepaint.iml" />
+    </modules>
+  </component>
+</project>
