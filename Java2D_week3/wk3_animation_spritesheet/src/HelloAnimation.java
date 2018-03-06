@@ -52,13 +52,13 @@ public class HelloAnimation extends JPanel implements ActionListener {
 		tx.translate(positionX, 200);
 
 		//dit kiezen kan op basis van de positie, of op basis van een attribuut
-		int frame = ((int)(positionX / 15)) % walkCycle.length;
+		int frame = ((int)(positionX / 50)) % walkCycle.length;
 		g2d.drawImage(walkCycle[frame], tx, null);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		positionX-=4;
+		positionX+=4;
 		if(positionX > getWidth())
 			positionX = 0;
 		if(positionX < 0)

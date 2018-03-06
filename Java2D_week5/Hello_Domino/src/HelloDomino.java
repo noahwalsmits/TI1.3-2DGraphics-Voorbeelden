@@ -41,11 +41,9 @@ public class HelloDomino extends JPanel implements ActionListener {
 		for(int y = 0; y < 10; y++) {
 			for (int x = 0; x < 10-y; x++) {
 				Body box = new Body();
-				box.addFixture(Geometry.createRectangle(.25, .25));
+				box.addFixture(Geometry.createRectangle(.2s5, .25));
 				box.setMass(MassType.NORMAL);
-
 				box.getTransform().setTranslation(5 + x * 0.25 + 0.125 * y, y*0.25);
-				box.getFixture(0).setRestitution(1.1);
 				world.addBody(box);
 
 			}

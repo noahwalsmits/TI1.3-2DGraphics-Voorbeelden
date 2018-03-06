@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Java2D_week5" />
+    <orderEntry type="library" name="dyn4j-3.2.3" level="project" />
   </component>
 </module>
