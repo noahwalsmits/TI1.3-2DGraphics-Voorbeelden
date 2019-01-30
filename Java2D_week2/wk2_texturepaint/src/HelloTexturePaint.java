@@ -1,3 +1,10 @@
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.stage.Stage;
+import org.jfree.fx.FXGraphics2D;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -6,38 +13,28 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class HelloTexturePaint extends JPanel {
-	public static void main(String[] args)
-	{
-		JFrame frame = new JFrame("Hello Java2D");
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension(800, 600));
-		frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-		frame.setContentPane(new HelloTexturePaint());
-		frame.setVisible(true);
+public class HelloTexturePaint extends Application {
+	Stage stage;
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		stage = primaryStage;
+		javafx.scene.canvas.Canvas canvas = new Canvas(1920, 1080);
+		draw(new FXGraphics2D(canvas.getGraphicsContext2D()));
+		primaryStage.setScene(new Scene(new Group(canvas)));
+		primaryStage.setTitle("Hello Paths");
+		primaryStage.show();
 	}
-
 	BufferedImage texture;
 
-	HelloTexturePaint()
+	public void draw(FXGraphics2D g2d)
 	{
 		try {
 			texture = ImageIO.read(getClass().getResource("/images/texture.jpg"));
 		} catch (IOException | IllegalArgumentException e) {
 			e.printStackTrace();
 		}
-	}
-
-
-	public void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);
-		Graphics2D g2d = (Graphics2D)g;
-
-
 		g2d.setPaint(new TexturePaint(texture, new Rectangle2D.Double(0,0,400,400)));
-
-		g2d.fill(new Rectangle2D.Double(0,0,getWidth(), getHeight()));
+		g2d.fill(new Rectangle2D.Double(0,0,1920, 1080));
 
 	}
 }
