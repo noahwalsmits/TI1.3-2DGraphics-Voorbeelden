@@ -1,3 +1,10 @@
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.stage.Stage;
+import org.jfree.fx.FXGraphics2D;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -5,33 +12,32 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class HelloImage extends JPanel {
-	private BufferedImage image;
+public class HelloImage extends Application {
+	Stage stage;
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		stage = primaryStage;
+		javafx.scene.canvas.Canvas canvas = new Canvas(1920, 1080);
 
-	public static void main(String[] args)
-	{
-		JFrame frame = new JFrame("Hello Java2D");
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension(800, 600));
-		frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-		frame.setContentPane(new HelloImage());
-		frame.setVisible(true);
-	}
-
-	HelloImage()
-	{
 		try {
 			image = ImageIO.read(getClass().getResource("/images/test.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+
+		FXGraphics2D g2d = new FXGraphics2D(canvas.getGraphicsContext2D());
+		draw(g2d);
+		primaryStage.setScene(new Scene(new Group(canvas)));
+		primaryStage.setTitle("Hello images");
+		primaryStage.show();
+
 	}
 
-	public void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);
-		Graphics2D g2d = (Graphics2D)g;
+	private BufferedImage image;
 
+	public void draw(FXGraphics2D g2d)
+	{
 
 		AffineTransform tx = new AffineTransform();
 		tx.translate(400,400);

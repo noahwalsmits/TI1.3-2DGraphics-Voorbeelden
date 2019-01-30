@@ -1,3 +1,9 @@
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.stage.Stage;
+import org.jfree.fx.FXGraphics2D;
 import sun.awt.image.BufferedImageDevice;
 
 import javax.imageio.ImageIO;
@@ -7,15 +13,40 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class HelloTiles extends JPanel {
-	public static void main(String[] args)
-	{
-		JFrame frame = new JFrame("Hello Java2D");
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension(800, 600));
-		frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-		frame.setContentPane(new HelloTiles());
-		frame.setVisible(true);
+public class HelloTiles extends Application {
+	Stage stage;
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		stage = primaryStage;
+		javafx.scene.canvas.Canvas canvas = new Canvas(1920, 1080);
+
+
+		try {
+			BufferedImage tileset = ImageIO.read(getClass().getResource("/images/tiles.png"));
+			tiles = new BufferedImage[tileset.getWidth()/32 * tileset.getHeight()/32];
+			int i = 0;
+			for(int y = 0; y < tileset.getHeight(); y+=32)
+			{
+				for(int x = 0; x < tileset.getWidth(); x+=32)
+				{
+					tiles[i] = tileset.getSubimage(x,y,32,32);
+					i++;
+				}
+			}
+
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
+
+		FXGraphics2D g2d = new FXGraphics2D(canvas.getGraphicsContext2D());
+		draw(g2d);
+		primaryStage.setScene(new Scene(new Group(canvas)));
+		primaryStage.setTitle("Hello Tilemap");
+		primaryStage.show();
+
 	}
 
 	BufferedImage[] tiles;
@@ -51,35 +82,12 @@ public class HelloTiles extends JPanel {
 		{8, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 13, 8, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 13,  },
 		{40, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 45, 40, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 45,  }};
 
-	HelloTiles()
+
+
+	public void draw(FXGraphics2D g2d)
 	{
-		setBackground(Color.black);
-		try {
-			BufferedImage tileset = ImageIO.read(getClass().getResource("/images/tiles.png"));
-			tiles = new BufferedImage[tileset.getWidth()/32 * tileset.getHeight()/32];
-			int i = 0;
-			for(int y = 0; y < tileset.getHeight(); y+=32)
-			{
-				for(int x = 0; x < tileset.getWidth(); x+=32)
-				{
-					tiles[i] = tileset.getSubimage(x,y,32,32);
-					i++;
-				}
-			}
-
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-
-	public void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);
-		Graphics2D g2d = (Graphics2D)g;
-
-
+		g2d.setBackground(Color.black);
+		g2d.clearRect(0,0,1920,1080);
 		for(int y = 0; y < level.length; y++)
 		{
 			for(int x = 0; x < level[y].length; x++)

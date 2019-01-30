@@ -1,3 +1,12 @@
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.ScrollEvent;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
@@ -6,25 +15,38 @@ import java.awt.geom.Point2D;
 /**
  * Created by johan on 15-2-2017.
  */
-public class Camera implements MouseListener, MouseMotionListener, MouseWheelListener {
-	Point2D centerPoint = new Point2D.Double(0,0);
-	double zoom = 1;
-	double rotation = 0;
-
+public class Camera {
+	private Point2D centerPoint = new Point2D.Double(0,0);
+	private double zoom = 1;
+	private double rotation = 0;
 
 	Point2D lastMousePos;
-	JPanel panel;
-	Camera(JPanel panel)
+	Camera(Node node)
 	{
-		this.panel = panel;
-		panel.addMouseListener(this);
-		panel.addMouseMotionListener(this);
-		panel.addMouseWheelListener(this);
+		node.setOnScroll(e -> {
+			zoom *= (1 + e.getDeltaY()/150.0f);
+		});
+
+		node.setOnMouseDragged(e -> {
+			if(e.getButton() == MouseButton.MIDDLE) {
+				centerPoint = new Point2D.Double(
+						centerPoint.getX() - (lastMousePos.getX() - e.getX()) / zoom,
+						centerPoint.getY() - (lastMousePos.getY() - e.getY()) / zoom
+				);
+			}
+			lastMousePos = new Point2D.Double(e.getX(), e.getY());
+		});
+
+		node.setOnMousePressed(e -> lastMousePos = new Point2D.Double(e.getX(), e.getY()));
+
 	}
 
+	public void setCenter(double x, double y)
+	{
+		centerPoint = new Point2D.Double(x, y);
+	}
 
-
-	public AffineTransform getTransform(int windowWidth, int windowHeight)
+	public AffineTransform getTransform(double windowWidth, double windowHeight)
 	{
 		AffineTransform tx = new AffineTransform();
 		tx.translate(windowWidth/2, windowHeight/2);
@@ -32,64 +54,5 @@ public class Camera implements MouseListener, MouseMotionListener, MouseWheelLis
 		tx.translate(centerPoint.getX(), centerPoint.getY());
 		tx.rotate(rotation);
 		return tx;
-	}
-
-
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		lastMousePos = e.getPoint();
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		if(SwingUtilities.isMiddleMouseButton(e))
-		{
-			if(!e.isControlDown())
-			{
-				centerPoint = new Point2D.Double(
-						centerPoint.getX() - (lastMousePos.getX() - e.getX()) / zoom,
-						centerPoint.getY() - (lastMousePos.getY() - e.getY()) / zoom
-				);
-
-			}
-			else
-			{
-				rotation += (lastMousePos.getX() - e.getX())/10.0;
-			}
-			lastMousePos = e.getPoint();
-			panel.repaint();
-		}
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseWheelMoved(MouseWheelEvent e) {
-		zoom *= (1 - e.getWheelRotation()/25.0f);
-		panel.repaint();
 	}
 }

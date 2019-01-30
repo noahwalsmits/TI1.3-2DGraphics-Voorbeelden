@@ -1,3 +1,10 @@
+import javafx.animation.AnimationTimer;
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.stage.Stage;
+import org.jfree.fx.FXGraphics2D;
 import sun.awt.image.BufferedImageDevice;
 
 import javax.imageio.ImageIO;
@@ -8,31 +15,42 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class HelloCompose extends JPanel {
-	public static void main(String[] args)
-	{
-		JFrame frame = new JFrame("Hello Java2D");
+public class HelloCompose extends Application {
+	Stage stage;
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		stage = primaryStage;
+		javafx.scene.canvas.Canvas canvas = new Canvas(1920, 1080);
 
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension(800, 600));
-		frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-		frame.setContentPane(new HelloCompose());
-		frame.setVisible(true);
-	}
-
-	Image image1;
-	Image image2;
-
-	HelloCompose()
-	{
 		try {
 			image1 = ImageIO.read(getClass().getResource("/images/image1.png"));
 			image2 = ImageIO.read(getClass().getResource("/images/image2.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+
+		FXGraphics2D g2d = new FXGraphics2D(canvas.getGraphicsContext2D());
+		draw(g2d);
+		primaryStage.setScene(new Scene(new Group(canvas)));
+		primaryStage.setTitle("Hello Animation");
+		primaryStage.show();
+
+		new AnimationTimer() {
+			long last = -1;
+			@Override
+			public void handle(long now) {
+				if(last == -1)
+					last = now;
+				//			update((now - last) / 1000000000.0);
+				last = now;
+				draw(g2d);
+			}
+		}.start();
 	}
 
+	Image image1;
+	Image image2;
 
 	int[] rules = {AlphaComposite.CLEAR, AlphaComposite.SRC_OVER,
 			       AlphaComposite.DST_OVER, AlphaComposite.SRC_IN,
@@ -47,12 +65,9 @@ public class HelloCompose extends JPanel {
 			"AlphaComposite.DST", "AlphaComposite.SRC_ATOP",
 			"AlphaComposite.DST_ATOP", "AlphaComposite.XOR"};
 
-	public void paintComponent(Graphics g)
+	public void draw(FXGraphics2D g2d)
 	{
-		super.paintComponent(g);
-
 		BufferedImage bi = new BufferedImage(2000,1000, BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g2d = (Graphics2D) bi.getGraphics();
 
 
 		for(int i = 0; i < rules.length; i++) {
@@ -70,8 +85,7 @@ public class HelloCompose extends JPanel {
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
 		}
 
-		Graphics2D g2d2 = (Graphics2D)g;
-		g2d2.drawImage(bi, null, null);
+		g2d.drawImage(bi, null, null);
 
 
 	}
