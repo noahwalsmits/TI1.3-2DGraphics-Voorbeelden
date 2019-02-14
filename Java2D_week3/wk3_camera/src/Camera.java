@@ -55,4 +55,8 @@ public class Camera {
 		tx.rotate(rotation);
 		return tx;
 	}
+
+	public double getZoom() {
+		return zoom;
+	}
 }

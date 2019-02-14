@@ -3,6 +3,8 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
 import org.jfree.fx.FXGraphics2D;
@@ -11,12 +13,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class HelloCamera extends Application {
 	Stage stage;
+	MediaPlayer mediaPlayer;
+	boolean musicStarted;
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		File file = new File("wk3_camera/summerAir.mp3");
+		Media summerAir = new Media(file.toURI().toString());
+		mediaPlayer = new MediaPlayer(summerAir);
+		System.out.println(mediaPlayer.getVolume());
+
 		stage = primaryStage;
 		javafx.scene.canvas.Canvas canvas = new Canvas(1920, 1080);
 
@@ -67,6 +79,15 @@ public class HelloCamera extends Application {
 
 	public void update(double frameTime)
 	{
+		if(!musicStarted && camera.getZoom() < 0.4) {
+			System.out.println("started");
+			musicStarted = true;
+			mediaPlayer.play();
+		}
+
+		if (musicStarted && camera.getZoom() <= 0.2) {
+			mediaPlayer.setVolume(0.2 / (camera.getZoom()));
+		}
 
 	}
 }
