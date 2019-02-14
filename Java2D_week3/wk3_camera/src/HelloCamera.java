@@ -85,7 +85,7 @@ public class HelloCamera extends Application {
 			mediaPlayer.play();
 		}
 
-		if (musicStarted && camera.getZoom() <= 0.2) {
+		if (musicStarted && camera.getZoom() <= 0.1) {
 			mediaPlayer.setVolume(0.1 / (camera.getZoom()));
 		}
 
