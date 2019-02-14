@@ -25,6 +25,9 @@ public class Camera {
 	{
 		node.setOnScroll(e -> {
 			zoom *= (1 + e.getDeltaY()/150.0f);
+			if (zoom < 0.1) {
+				zoom = 0.1; //max zoom
+			}
 		});
 
 		node.setOnMouseDragged(e -> {
